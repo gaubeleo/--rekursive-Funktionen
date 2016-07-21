@@ -32,14 +32,7 @@ def Komp(f, gs=[]):
 
 # 5. Induktionsfunktion
 def Ind(_f, _g):
-
 	def _Ind(*args):
-		#if not inspect.isfunction(f) or len(inspect.getargspec(f)[0]) + 1 != len(args):
-			#print inspect.getargspec(f)[0]
-			#raise Exception
-		#if not inspect.isfunction(g) or len(inspect.getargspec(g)[0]) + 1 != len(args):
-		#	raise Exception
-
 		x1 = args[0]
 		args = args[1:]
 		if x1 == 0:
@@ -75,8 +68,6 @@ def Max(x, y):
 
 def Max3(x, y, z):
 	return isGreater(Komp(isGreater(P(3, 1), P(3, 2)), (P(3, 1), P(3, 3), P(3, 2))), Komp(isGreater(P(3, 1), P(3, 2)), (P(3, 2), P(3, 3), P(3, 1))))(x, y, z)
-
-	#return isGreater(isGreater(P(3, 1), P(3, 3)), isGreater(P(3, 2), P(3, 3)))(x, y, z)
 
 #--------------------------------------------------------------------------------------------
 
@@ -114,13 +105,6 @@ def isGreater(_Then, _Else):
 
 	return _isGreater
 
-#def isSmaller(_Then, _Else):
-#	def _isSmaller(x, y, *args):
-#		k = len(args) + 2
-#		return Komp(isZero(_Then, _Else), (Komp(Monus, (Komp(Next, P(k, 1)), P(k, 2))), [P(k, 3+x) for x in range(len(args))]))(x, y, *args)
-#
-#	return _isSmaller
-
 if __name__ == "__main__":
 	print "Tests:"
 	print Plus(4, 9) == 13
@@ -132,22 +116,27 @@ if __name__ == "__main__":
 	print Min(9, 5) == 5
 	print Max(5, 15) == 15
 	print Max(15, 5) == 15
+	
 	print
-
+	print "isZero:"
 	print isZero(P(2, 1), P(2, 2))(0, 3, 4) == 3
 	print isZero(P(3, 1), P(3, 3))(2, 3, 4, 5) == 5
 	
+	print
+	print "isEqual:"
 	print isEqual(P(4, 3), P(4, 4))(8, 8, 3, 5) == 3
 	print isEqual(P(4, 3), P(4, 4))(8, 9, 3, 5) == 5
 	print isEqual(P(4, 3), P(4, 4))(9, 8, 3, 5) == 5
-	
+
+	print
+	print "isGreater:"
 	print isGreater(K(2, 3), K(2, 5))(8, 9) == 5
 	print isGreater(P(4, 3), P(4, 4))(8, 8, 3, 5) == 5
 	print isGreater(P(4, 3), P(4, 4))(8, 9, 3, 5) == 5
 	print isGreater(P(4, 3), P(4, 4))(9, 8, 3, 5) == 3
-
+	
 	print
-
+	print "Max3:"
 	print Max3(4, 5, 6) == 6
 	print Max3(4, 6, 5) == 6
 	print Max3(5, 4, 6) == 6
