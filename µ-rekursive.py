@@ -8,19 +8,12 @@ def Next(x):
 def K(k, c):
 	def _K(*args):
 		return c
-
-	#if k != len(args):
-	#	raise Exception
 	
 	return _K
 
 # 3. Produktionsfunktion
 def P(k, i):
 	def _P(*args):
-
-		#if k != len(args) or i > 0 or i <= k:
-		#	raise Exception
-
 		# i-1 because Python's list index starts with 0
 		return args[i-1]
 
@@ -36,13 +29,6 @@ def Komp(f, gs=[]):
 			return f(gs(*args))
 
 	return _Komp
-
-	#if not inspect.isfunction(f) or len(inspect.getargspec(f)[0]) != len(gs):
-	#	raise Exception	
-	#for g in gs:
-	#	if not inspect.isfunction(g) or len(inspect.getargspec(g)[0]) != len(args):
-	#		raise Exception
-
 
 # 5. Induktionsfunktion
 def Ind(_f, _g):
@@ -136,7 +122,7 @@ def isGreater(_Then, _Else):
 #	return _isSmaller
 
 if __name__ == "__main__":
-	#print "Tests:"
+	print "Tests:"
 	print Plus(4, 9) == 13
 	print Times(7, 8) == 56
 	print Previous(8) == 7
@@ -159,11 +145,6 @@ if __name__ == "__main__":
 	print isGreater(P(4, 3), P(4, 4))(8, 8, 3, 5) == 5
 	print isGreater(P(4, 3), P(4, 4))(8, 9, 3, 5) == 5
 	print isGreater(P(4, 3), P(4, 4))(9, 8, 3, 5) == 3
-
-	#print isSmaller(K(2, 3), K(2, 5))(8, 9) == 3
-	#print isSmaller(P(4, 3), P(4, 4))(8, 8, 3, 5) == 5
-	#print isSmaller(P(4, 3), P(4, 4))(8, 9, 3, 5) == 3
-	#print isSmaller(P(4, 3), P(4, 4))(9, 8, 3, 5) == 5
 
 	print
 
